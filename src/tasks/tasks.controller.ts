@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { TasksService } from './tasks.service';
+import { Task } from './task.model';
 
 /**
  * The controller handles the HTTP requests and returns the response.
@@ -10,7 +11,7 @@ export class TasksController {
   constructor(private tasksService: TasksService) {}
 
   @Get()
-  getAllTasks() {
+  getAllTasks(): Task[] {
     return this.tasksService.getAllTasks();
   }
 }
