@@ -54,6 +54,7 @@ export class TasksService {
   }
 
   deleteTask(id: string): void {
+    const found = this.getTaskById(id); // will automatically throw an error if the task is not found
     this.tasks = this.tasks.filter(task => task.id !== id);
   }
 
