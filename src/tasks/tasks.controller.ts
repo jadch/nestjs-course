@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 /**
  * The controller handles the HTTP requests and returns the response.
@@ -17,11 +18,14 @@ export class TasksController {
 
   @Post()
   // createTask(@Body() body): Task {
-  //  console.log('body: ', body); // one way to extract params is to get the whole body, OR
-  createTask(
-    @Body('title' /* name of the key in the body */) title: string,
-    @Body('description') description: string,
-  ): Task {
-    return this.tasksService.createTask(title, description);
+  //  console.log('body: ', body); // one way to extract params is to get the whole body
+  // ******************************* OR
+  // createTask(
+  //   @Body('title' /* name of the key in the body */) title: string,
+  //   @Body('description') description: string,
+  // ): Task {
+  // ******************************* OR, using DTOs
+  createTask(@Body() createTaskDto: CreateTaskDto): Task {
+    return this.tasksService.createTask(createTaskDto);
   }
 }
